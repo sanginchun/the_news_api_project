@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/9a60823697.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" defer src="src/js/controller.js"></script>
+    <title>THE News</title>
+  </head>
+  <body>
+    <header id="main-header">
+      <div class="main-header-left">
+        <i class="fas fa-bars fa-2x"></i>
+        <div class="title">
+          <a href="/"
+            ><h2>THE <span>NEWS</span></h2></a
+          >
+        </div>
+      </div>
+      <div class="main-header-center">
+        <form class="search-container">
+          <button type="submit"><i class="fas fa-search fa-2x"></i></button>
+          <input
+            type="text"
+            placeholder="주제, 키워드 검색"
+            class="search-field"
+          />
+          <button type="reset"><i class="fas fa-times"></i></button>
+        </form>
+      </div>
+      <div class="main-header-right">
+        <div class="btn btn-login">로그인</div>
+      </div>
+    </header>
+
+    <main id="main-display">
+      <nav id="main-nav">
+        <ul class="category">
+          <li class="selected" data-category="general">
+            <div class="icon"><i class="fas fa-globe"></i></div>
+            종합
+          </li>
+          <li data-category="business">
+            <div class="icon"><i class="fas fa-building"></i></div>
+            비즈니스
+          </li>
+          <li data-category="entertainment">
+            <div class="icon"><i class="fas fa-film"></i></div>
+            엔터테인먼트
+          </li>
+          <li data-category="sports">
+            <div class="icon"><i class="fas fa-running"></i></div>
+            스포츠
+          </li>
+          <li data-category="health">
+            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+            건강
+          </li>
+          <li data-category="science">
+            <div class="icon"><i class="fas fa-flask"></i></div>
+            과학
+          </li>
+          <li data-category="technology">
+            <div class="icon"><i class="far fa-lightbulb"></i></div>
+            기술
+          </li>
+          <li data-category="follows">
+            <div class="icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            팔로우
+          </li>
+          <li data-category="bookmarks">
+            <div class="icon">
+              <i class="fas fa-bookmark"></i>
+            </div>
+            저장한 기사
+          </li>
+        </ul>
+        <ul class="settings">
+          <li>다크 모드</li>
+          <li>도움말</li>
+          <li>의견 보내기</li>
+        </ul>
+      </nav>
+      <section id="main-section">
+        <div class="display-container">
+          <!-- <ul class="keywords-list">
+            <li>EPL
+              <div class="btn"><i class="fas fa-check-circle"></i></div></li>
+           
+          </ul> -->
+        </div>
+        <div class="contents-container">
+          <!-- <article class="content">
+            <div class="content-text">
+              <a href=""><h3 class="title">기사 제목1</h3></a>
+              <h6 class="source">소스
+                <span class="time">게시일</span></h6>
+              <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima eaque praesentium in doloribus ratione iure!</p>
+            </div>
+            <img src="sample.jpg" alt="" class="content-img" />
+          </article> -->
+          <div id="scroll-sentinel"></div>
+        </div>
+        <div id="pagination">
+          <ul class="page-list">
+            <!-- <li>1</li>
+            <li>2</li>
+            <li>3</li> -->
+          </ul>
+        </div>
+      </section>
+      <aside id="side-banner">
+        <div class="banner-container">
+          <div class="banner weather"></div>
+          <div class="banner ad"></div>
+          <div class="banner ad"></div>
+        </div>
+      </aside>
+    </main>
+    <div class="modal-window hidden"></div>
+    <div class="overlay hidden"></div>
+  </body>
+</html>
