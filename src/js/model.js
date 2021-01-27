@@ -43,7 +43,7 @@ const articleFilters = function (article) {
     THUMBNAIL_WORDS
   );
   article.dateFiltered = helpers.getTimeString(article.date);
-  article.img = article.img ? article.img : "../img/sample.jpg";
+  article.img = article.img ? article.img : "/src/img/sample.jpg";
   article.bookmark = isBookmarked(article.url);
   return article;
 };

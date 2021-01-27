@@ -72,6 +72,7 @@ class Content {
   addHandlerScroll(handler) {
     const observer = new IntersectionObserver(handler, {
       root: null,
+      rootMargin: "0px 0px 100px 0px",
       threshold: 0,
     });
     observer.observe(this._sentinel);
