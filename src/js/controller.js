@@ -7,10 +7,6 @@ import keywords from "./views/keywords.js";
 import pagination from "./views/pagination.js";
 import share from "./views/share.js";
 import settings from "./views/settings.js";
-
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-
 import {
   INIT_CONTENT_NUM,
   MAX_PAGE,
@@ -19,48 +15,58 @@ import {
   CATEGORY_KOR,
 } from "./config.js";
 
+// import "core-js/stable";
+// import "regenerator-runtime/runtime";
+
 const controlLoadCategory = async function (category, pageNum = 1) {
-  model.state.category = category;
-  model.state.currentPage = pageNum;
-  model.state.keyword = "";
+  try {
+    model.state.category = category;
+    model.state.currentPage = pageNum;
+    model.state.keyword = "";
 
-  if (category === "follows") {
-    loadFollow();
-    return;
+    if (category === "follows") {
+      loadFollow();
+      return;
+    }
+    if (category === "bookmarks") {
+      loadBookmarks(pageNum);
+      return;
+    }
+
+    // Rest Categories: [general, business, entertainment, sports, health, science, technology]
+    // render header
+    contentsHeader.clear();
+    contentsHeader.renderHeader(CATEGORY_KOR[category]);
+
+    // get data
+    const [data, totalResults] = await model.getNewsByCategory(
+      category,
+      model.state.currentPage
+    );
+
+    // parse data & update state
+    model.createArticlesObject(data);
+
+    // if no articles to display
+    if (!model.state.articles.length) {
+      contents.renderMessage("해당 카테고리에 기사가 없습니다.");
+      return;
+    }
+
+    // render articles
+    contents.renderContent(
+      model.state.articles.slice(0, INIT_CONTENT_NUM),
+      true
+    );
+
+    // render pagination & toggle current
+    loadPagination(model.state.currentPage, totalResults);
+
+    // update state
+    model.state.nextArticleIndex = INIT_CONTENT_NUM;
+  } catch (err) {
+    console.log(err);
   }
-  if (category === "bookmarks") {
-    loadBookmarks(pageNum);
-    return;
-  }
-
-  // Rest Categories: [general, business, entertainment, sports, health, science, technology]
-  // render header
-  contentsHeader.clear();
-  contentsHeader.renderHeader(CATEGORY_KOR[category]);
-
-  // get data
-  const [data, totalResults] = await model.getNewsByCategory(
-    category,
-    model.state.currentPage
-  );
-
-  // parse data & update state
-  model.createArticlesObject(data);
-
-  // if no articles to display
-  if (!model.state.articles.length) {
-    contents.renderMessage("해당 카테고리에 기사가 없습니다.");
-    return;
-  }
-
-  // render articles
-  contents.renderContent(model.state.articles.slice(0, INIT_CONTENT_NUM), true);
-
-  // render pagination & toggle current
-  loadPagination(model.state.currentPage, totalResults);
-
-  // update state
-  model.state.nextArticleIndex = INIT_CONTENT_NUM;
 };
 
 const loadFollow = function () {

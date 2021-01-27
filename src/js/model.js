@@ -4,7 +4,7 @@ import { NEWS_API_URL } from "./config.js";
 import { TIME_OUT_SEC } from "./config.js";
 import { THUMBNAIL_WORDS } from "./config.js";
 
-import "regenerator-runtime";
+// import "regenerator-runtime";
 
 export const state = {
   articles: [],
@@ -127,8 +127,6 @@ const getNews = async function (url) {
 
     const res = await Promise.race([fetchProm, helpers.timeout(TIME_OUT_SEC)]);
     const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} STATUS: (${res.status})`);
 
     return data;
   } catch (err) {

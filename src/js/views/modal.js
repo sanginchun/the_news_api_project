@@ -26,7 +26,6 @@ export default class Modal {
     this._modalWindow.addEventListener(
       "click",
       function (e) {
-        e.preventDefault();
         if (!e.target.closest(".btn-close-modal")) return;
 
         this._close();
