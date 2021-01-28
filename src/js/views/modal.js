@@ -10,12 +10,16 @@ export default class Modal {
     this._modalWindow.innerHTML = this._generateMarkup(data);
 
     this._overlay.classList.remove("hidden");
-    this._modalWindow.classList.remove("hidden");
+    // this._modalWindow.classList.remove("hidden");
+    this._modalWindow.classList.add("modal-open");
+    this._modalWindow.classList.remove("modal-closed");
   }
 
   _close() {
     this._overlay.classList.add("hidden");
-    this._modalWindow.classList.add("hidden");
+    // this._modalWindow.classList.add("hidden");
+    this._modalWindow.classList.add("modal-closed");
+    this._modalWindow.classList.remove("modal-open");
   }
 
   _addHandlerCloseModal() {
